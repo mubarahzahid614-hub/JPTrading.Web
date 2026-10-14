@@ -1,0 +1,52 @@
+<MudPaper Class="pa-4 mb-4" Elevation="1">
+    <MudGrid>
+        <MudItem xs="12" sm="4">
+            <MudTextField @bind-Value="_text" Label="Search" Variant="Variant.Outlined"
+                          Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" />
+        </MudItem>
+
+        <MudItem xs="12" sm="3">
+            <MudSelect T="string" @bind-Value="_make" Label="Make" Variant="Variant.Outlined">
+                <MudSelectItem T="string" Value="@("")">All</MudSelectItem>
+                @foreach (var m in Makes)
+                {
+                    <MudSelectItem T="string" Value="@m">@m</MudSelectItem>
+                }
+            </MudSelect>
+        </MudItem>
+
+        <MudItem xs="12" sm="3">
+            <MudNumericField T="decimal?" @bind-Value="_maxPrice" Label="Max price (JPY)"
+                             Variant="Variant.Outlined" HideSpinButtons="true" />
+        </MudItem>
+
+        <MudItem xs="12" sm="2">
+            <MudStack Row="true">
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Search">Search</MudButton>
+                <MudButton Variant="Variant.Text" OnClick="Reset">Reset</MudButton>
+            </MudStack>
+        </MudItem>
+    </MudGrid>
+</MudPaper>
+
+@code {
+    [Parameter]
+    public List<string> Makes { get; set; } = new();
+
+    [Parameter]
+    public EventCallback<(string? Text, string? Make, decimal? MaxPrice)> OnSearch { get; set; }
+
+    string? _text;
+    string? _make = "";
+    decimal? _maxPrice;
+
+    Task Search() => OnSearch.InvokeAsync((_text, _make, _maxPrice));
+
+    async Task Reset()
+    {
+        _text = null;
+        _make = "";
+        _maxPrice = null;
+        await Search();
+    }
+}

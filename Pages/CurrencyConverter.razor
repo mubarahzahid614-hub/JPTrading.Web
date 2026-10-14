@@ -1,0 +1,42 @@
+@page "/converter"
+@inject CurrencyService CurrencySvc
+
+<PageTitle>PKR Converter</PageTitle>
+
+<MudText Typo="Typo.h4" Class="mb-4">JPY to PKR Converter</MudText>
+
+<MudPaper Class="pa-4" Elevation="2" Style="max-width:500px;">
+    <MudNumericField T="decimal" @bind-Value="_amountJpy" Label="Amount (JPY)"
+                     Variant="Variant.Outlined" Min="0" Class="mb-3" />
+
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Convert">Convert</MudButton>
+
+    @if (_resultPkr.HasValue)
+    {
+        <MudText Typo="Typo.h5" Class="mt-4">@($"PKR {_resultPkr.Value:N0}")</MudText>
+    }
+
+    @if (_rate != null)
+    {
+        <MudText Typo="Typo.caption" Class="mt-2">
+            Rate: 1 JPY = @_rate.Rate PKR (updated @_rate.UpdatedAt.ToString("g"))
+        </MudText>
+    }
+</MudPaper>
+
+@code {
+    decimal _amountJpy;
+    decimal? _resultPkr;
+    CurrencyRate? _rate;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _rate = await CurrencySvc.GetRateAsync();
+    }
+
+    void Convert()
+    {
+        if (_rate is null) return;
+        _resultPkr = CurrencySvc.Convert(_amountJpy, _rate.Rate);
+    }
+}

@@ -1,0 +1,17 @@
+<MudStack Spacing="2">
+    @foreach (var step in Enum.GetValues<OrderStatus>())
+    {
+        var done = step <= Current;
+
+        <MudStack Row="true" AlignItems="AlignItems.Center">
+            <MudIcon Icon="@(done ? Icons.Material.Filled.CheckCircle : Icons.Material.Outlined.RadioButtonUnchecked)"
+                     Color="@(done ? Color.Success : Color.Default)" />
+            <MudText Typo="Typo.body1">@step</MudText>
+        </MudStack>
+    }
+</MudStack>
+
+@code {
+    [Parameter]
+    public OrderStatus Current { get; set; }
+}

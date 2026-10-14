@@ -1,0 +1,58 @@
+@page "/auction-sheet"
+@inject AuctionSheetService AuctionSvc
+
+<PageTitle>Auction Sheet</PageTitle>
+
+<MudText Typo="Typo.h4" Class="mb-4">Auction Sheet Translation</MudText>
+
+<MudPaper Class="pa-4 mb-4" Elevation="1">
+    <MudText Class="mb-2">Upload a Japanese auction sheet (image or PDF) to get an English translation.</MudText>
+
+    <MudFileUpload T="IBrowserFile" FilesChanged="OnFileSelected" Accept=".jpg,.jpeg,.png,.pdf">
+        <ActivatorContent>
+            <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Filled.CloudUpload">
+                Choose file
+            </MudButton>
+        </ActivatorContent>
+    </MudFileUpload>
+
+    @if (_fileName != null)
+    {
+        <MudText Class="mt-2">Selected: <b>@_fileName</b></MudText>
+        <MudButton Class="mt-2" Variant="Variant.Filled" Color="Color.Primary"
+                   Disabled="_loading" OnClick="Translate">
+            Translate
+        </MudButton>
+    }
+</MudPaper>
+
+@if (_loading)
+{
+    <MudProgressLinear Indeterminate="true" Class="mb-4" />
+}
+
+@if (_result != null)
+{
+    <AuctionSheetViewer Result="_result" />
+}
+
+@code {
+    string? _fileName;
+    bool _loading;
+    AuctionSheetResult? _result;
+
+    void OnFileSelected(IBrowserFile file)
+    {
+        _fileName = file.Name;
+        _result = null;
+    }
+
+    async Task Translate()
+    {
+        if (_fileName is null) return;
+
+        _loading = true;
+        _result = await AuctionSvc.TranslateAsync(_fileName);
+        _loading = false;
+    }
+}

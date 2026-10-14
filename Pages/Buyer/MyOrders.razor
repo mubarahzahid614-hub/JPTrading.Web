@@ -1,0 +1,38 @@
+@page "/buyer/orders"
+@inject OrderService OrderSvc
+
+<PageTitle>My Orders</PageTitle>
+
+<MudText Typo="Typo.h4" Class="mb-4">My Orders</MudText>
+
+<MudTable Items="_orders" Hover="true">
+    <HeaderContent>
+        <MudTh>Order #</MudTh>
+        <MudTh>Vehicle</MudTh>
+        <MudTh>Date</MudTh>
+        <MudTh>Status</MudTh>
+        <MudTh>Total (PKR)</MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate Context="o">
+        <MudTd>@o.Id</MudTd>
+        <MudTd>@o.VehicleTitle</MudTd>
+        <MudTd>@o.OrderDate.ToString("dd MMM yyyy")</MudTd>
+        <MudTd>@o.Status</MudTd>
+        <MudTd>@($"{o.TotalPkr:N0}")</MudTd>
+        <MudTd>
+            <MudButton Size="Size.Small" Variant="Variant.Outlined" Href="@($"buyer/orders/{o.Id}")">
+                Track
+            </MudButton>
+        </MudTd>
+    </RowTemplate>
+</MudTable>
+
+@code {
+    List<Order> _orders = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _orders = await OrderSvc.GetByBuyerAsync("Ali Raza");
+    }
+}

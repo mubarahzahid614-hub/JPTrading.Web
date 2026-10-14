@@ -1,0 +1,45 @@
+@page "/admin/dashboard"
+@inject VehicleService VehicleSvc
+@inject OrderService OrderSvc
+
+<PageTitle>Admin Dashboard</PageTitle>
+
+<MudText Typo="Typo.h4" Class="mb-4">Admin Dashboard</MudText>
+
+<MudGrid>
+    <MudItem xs="12" sm="4">
+        <MudPaper Class="pa-4" Elevation="2">
+            <MudText Typo="Typo.subtitle2">Vehicles</MudText>
+            <MudText Typo="Typo.h4">@_vehicles.Count</MudText>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="4">
+        <MudPaper Class="pa-4" Elevation="2">
+            <MudText Typo="Typo.subtitle2">Orders</MudText>
+            <MudText Typo="Typo.h4">@_orders.Count</MudText>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="4">
+        <MudPaper Class="pa-4" Elevation="2">
+            <MudText Typo="Typo.subtitle2">Available vehicles</MudText>
+            <MudText Typo="Typo.h4">@_vehicles.Count(v => v.Status == "Available")</MudText>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+<MudStack Row="true" Class="mt-4">
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="admin/vehicles">Manage Vehicles</MudButton>
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="admin/orders">Manage Orders</MudButton>
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="admin/users">Manage Users</MudButton>
+</MudStack>
+
+@code {
+    List<Vehicle> _vehicles = new();
+    List<Order> _orders = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _vehicles = await VehicleSvc.GetAllAsync();
+        _orders = await OrderSvc.GetAllAsync();
+    }
+}

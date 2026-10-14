@@ -1,0 +1,42 @@
+@page "/buyer/dashboard"
+@inject OrderService OrderSvc
+
+<PageTitle>Buyer Dashboard</PageTitle>
+
+<MudText Typo="Typo.h4" Class="mb-4">Buyer Dashboard</MudText>
+
+<MudGrid>
+    <MudItem xs="12" sm="4">
+        <MudPaper Class="pa-4" Elevation="2">
+            <MudText Typo="Typo.subtitle2">Total orders</MudText>
+            <MudText Typo="Typo.h4">@_orders.Count</MudText>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="4">
+        <MudPaper Class="pa-4" Elevation="2">
+            <MudText Typo="Typo.subtitle2">In progress</MudText>
+            <MudText Typo="Typo.h4">@_orders.Count(o => o.Status != OrderStatus.Delivered)</MudText>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="4">
+        <MudPaper Class="pa-4" Elevation="2">
+            <MudText Typo="Typo.subtitle2">Delivered</MudText>
+            <MudText Typo="Typo.h4">@_orders.Count(o => o.Status == OrderStatus.Delivered)</MudText>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+<MudStack Row="true" Class="mt-4">
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="buyer/orders">My Orders</MudButton>
+    <MudButton Variant="Variant.Outlined" Href="vehicles">Browse Vehicles</MudButton>
+</MudStack>
+
+@code {
+    List<Order> _orders = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Dummy buyer. Login jud jane par asal user ka naam aayega.
+        _orders = await OrderSvc.GetByBuyerAsync("Ali Raza");
+    }
+}

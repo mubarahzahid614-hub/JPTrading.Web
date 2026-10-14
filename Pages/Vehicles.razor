@@ -1,0 +1,55 @@
+@page "/vehicles"
+@inject VehicleService VehicleSvc
+@inject CurrencyService CurrencySvc
+
+<PageTitle>Vehicles</PageTitle>
+
+<MudText Typo="Typo.h4" Class="mb-4">Available Vehicles</MudText>
+
+<FilterPanel Makes="_makes" OnSearch="HandleSearch" />
+
+@if (_loading)
+{
+    <MudProgressCircular Indeterminate="true" />
+}
+else if (_vehicles.Count == 0)
+{
+    <MudAlert Severity="Severity.Info">No vehicles found. Try changing your filters.</MudAlert>
+}
+else
+{
+    <MudGrid>
+        @foreach (var v in _vehicles)
+        {
+            <MudItem xs="12" sm="6" md="4">
+                <VehicleCard Vehicle="v" Rate="_rate" />
+            </MudItem>
+        }
+    </MudGrid>
+}
+
+@code {
+    List<Vehicle> _vehicles = new();
+    List<string> _makes = new();
+    decimal _rate = 1m;
+    bool _loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var all = await VehicleSvc.GetAllAsync();
+        _makes = all.Select(v => v.Make).Distinct().OrderBy(m => m).ToList();
+        _vehicles = all;
+
+        var rate = await CurrencySvc.GetRateAsync();
+        _rate = rate.Rate;
+
+        _loading = false;
+    }
+
+    async Task HandleSearch((string? Text, string? Make, decimal? MaxPrice) f)
+    {
+        _loading = true;
+        _vehicles = await VehicleSvc.SearchAsync(f.Text, f.Make, f.MaxPrice);
+        _loading = false;
+    }
+}

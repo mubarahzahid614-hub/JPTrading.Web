@@ -1,0 +1,35 @@
+<MudPaper Class="pa-4" Elevation="2">
+    <MudText Typo="Typo.h6" Class="mb-2">@Result.FileName</MudText>
+
+    <MudGrid>
+        <MudItem xs="4"><MudText><b>Overall:</b> @Result.OverallGrade</MudText></MudItem>
+        <MudItem xs="4"><MudText><b>Interior:</b> @Result.InteriorGrade</MudText></MudItem>
+        <MudItem xs="4"><MudText><b>Exterior:</b> @Result.ExteriorGrade</MudText></MudItem>
+    </MudGrid>
+
+    <MudText Class="mt-3"><b>Mileage:</b> @($"{Result.MileageKm:N0} km")</MudText>
+
+    <MudDivider Class="my-3" />
+
+    <MudText Typo="Typo.subtitle2">Original (Japanese)</MudText>
+    <MudText Class="mb-2">@Result.OriginalText</MudText>
+
+    <MudText Typo="Typo.subtitle2">Translation (English)</MudText>
+    <MudText Class="mb-2">@Result.TranslatedText</MudText>
+
+    @if (Result.Notes.Count > 0)
+    {
+        <MudText Typo="Typo.subtitle2">Inspector notes</MudText>
+        <ul>
+            @foreach (var note in Result.Notes)
+            {
+                <li>@note</li>
+            }
+        </ul>
+    }
+</MudPaper>
+
+@code {
+    [Parameter, EditorRequired]
+    public AuctionSheetResult Result { get; set; } = default!;
+}

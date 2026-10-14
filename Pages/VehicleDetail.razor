@@ -1,0 +1,79 @@
+@page "/vehicles/{Id:int}"
+@inject VehicleService VehicleSvc
+@inject CurrencyService CurrencySvc
+
+<PageTitle>Vehicle Details</PageTitle>
+
+<MudButton Href="vehicles" StartIcon="@Icons.Material.Filled.ArrowBack" Class="mb-3">
+    Back to vehicles
+</MudButton>
+
+@if (_loading)
+{
+    <MudProgressCircular Indeterminate="true" />
+}
+else if (_vehicle is null)
+{
+    <MudAlert Severity="Severity.Warning">Vehicle not found.</MudAlert>
+}
+else
+{
+    <MudPaper Class="pa-4" Elevation="2">
+        <MudText Typo="Typo.h4" Class="mb-2">@_vehicle.Title</MudText>
+
+        <MudGrid>
+            <MudItem xs="12" md="6">
+                <MudSimpleTable Dense="true" Hover="true">
+                    <tbody>
+                        <tr><td><b>Make</b></td><td>@_vehicle.Make</td></tr>
+                        <tr><td><b>Model</b></td><td>@_vehicle.Model</td></tr>
+                        <tr><td><b>Year</b></td><td>@_vehicle.Year</td></tr>
+                        <tr><td><b>Mileage</b></td><td>@($"{_vehicle.MileageKm:N0} km")</td></tr>
+                        <tr><td><b>Transmission</b></td><td>@_vehicle.Transmission</td></tr>
+                        <tr><td><b>Fuel type</b></td><td>@_vehicle.FuelType</td></tr>
+                        <tr><td><b>Body type</b></td><td>@_vehicle.BodyType</td></tr>
+                        <tr><td><b>Color</b></td><td>@_vehicle.Color</td></tr>
+                        <tr><td><b>Auction grade</b></td><td>@_vehicle.AuctionGrade</td></tr>
+                        <tr><td><b>Status</b></td><td>@_vehicle.Status</td></tr>
+                    </tbody>
+                </MudSimpleTable>
+            </MudItem>
+
+            <MudItem xs="12" md="6">
+                <MudText Typo="Typo.h5">@($"¥ {_vehicle.PriceJpy:N0}")</MudText>
+                <MudText Typo="Typo.h6" Class="mb-4">@($"≈ PKR {(_vehicle.PriceJpy * _rate):N0}")</MudText>
+                <MudText Typo="Typo.caption" Class="mb-4">
+                    Rate: 1 JPY = @_rate PKR (estimate, excludes duty and shipping)
+                </MudText>
+
+                <MudStack Spacing="2">
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary"
+                               Disabled="@(_vehicle.Status != "Available")">
+                        Place Order
+                    </MudButton>
+                    <MudButton Variant="Variant.Outlined" Href="auction-sheet">
+                        View Auction Sheet
+                    </MudButton>
+                </MudStack>
+            </MudItem>
+        </MudGrid>
+    </MudPaper>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    Vehicle? _vehicle;
+    decimal _rate = 1m;
+    bool _loading = true;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _loading = true;
+        _vehicle = await VehicleSvc.GetByIdAsync(Id);
+        var rate = await CurrencySvc.GetRateAsync();
+        _rate = rate.Rate;
+        _loading = false;
+    }
+}

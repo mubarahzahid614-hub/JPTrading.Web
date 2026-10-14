@@ -1,0 +1,31 @@
+@page "/admin/users"
+
+<PageTitle>Manage Users</PageTitle>
+
+<MudText Typo="Typo.h4" Class="mb-4">Manage Users</MudText>
+
+@* Dummy users. Baad me backend ki API se aayenge. *@
+<MudTable Items="_users" Hover="true">
+    <HeaderContent>
+        <MudTh>ID</MudTh>
+        <MudTh>Name</MudTh>
+        <MudTh>Email</MudTh>
+        <MudTh>Role</MudTh>
+    </HeaderContent>
+    <RowTemplate Context="u">
+        <MudTd>@u.Id</MudTd>
+        <MudTd>@u.FullName</MudTd>
+        <MudTd>@u.Email</MudTd>
+        <MudTd>@u.Role</MudTd>
+    </RowTemplate>
+</MudTable>
+
+@code {
+    List<User> _users = new()
+    {
+        new() { Id = 1, FullName = "Ali Raza", Email = "ali@example.com", Role = "Buyer" },
+        new() { Id = 2, FullName = "Sara Khan", Email = "sara@example.com", Role = "Buyer" },
+        new() { Id = 3, FullName = "Admin User", Email = "admin@example.com", Role = "Admin" },
+        new() { Id = 4, FullName = "Staff User", Email = "staff@example.com", Role = "Staff" }
+    };
+}

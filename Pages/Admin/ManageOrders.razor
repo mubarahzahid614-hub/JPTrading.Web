@@ -1,0 +1,48 @@
+@page "/admin/orders"
+@inject OrderService OrderSvc
+@inject ISnackbar Snackbar
+
+<PageTitle>Manage Orders</PageTitle>
+
+<MudText Typo="Typo.h4" Class="mb-4">Manage Orders</MudText>
+
+<MudTable Items="_orders" Hover="true">
+    <HeaderContent>
+        <MudTh>Order #</MudTh>
+        <MudTh>Vehicle</MudTh>
+        <MudTh>Buyer</MudTh>
+        <MudTh>Total (PKR)</MudTh>
+        <MudTh>Status</MudTh>
+    </HeaderContent>
+    <RowTemplate Context="o">
+        <MudTd>@o.Id</MudTd>
+        <MudTd>@o.VehicleTitle</MudTd>
+        <MudTd>@o.BuyerName</MudTd>
+        <MudTd>@($"{o.TotalPkr:N0}")</MudTd>
+        <MudTd>
+            <MudSelect T="OrderStatus" Value="o.Status"
+                       ValueChanged="@(s => ChangeStatus(o, s))" Variant="Variant.Outlined" Dense="true">
+                @foreach (var s in Enum.GetValues<OrderStatus>())
+                {
+                    <MudSelectItem T="OrderStatus" Value="s">@s</MudSelectItem>
+                }
+            </MudSelect>
+        </MudTd>
+    </RowTemplate>
+</MudTable>
+
+@code {
+    List<Order> _orders = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _orders = await OrderSvc.GetAllAsync();
+    }
+
+    async Task ChangeStatus(Order order, OrderStatus status)
+    {
+        await OrderSvc.UpdateStatusAsync(order.Id, status);
+        _orders = await OrderSvc.GetAllAsync();
+        Snackbar.Add($"Order #{order.Id} updated to {status}", Severity.Success);
+    }
+}

@@ -1,0 +1,141 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.VerifyReferenceTrimCompatibility = 
+build_property.VerifyReferenceAotCompatibility = 
+build_property.MudDebugAnalyzer = 
+build_property.MudAllowedAttributePattern = 
+build_property.MudAllowedAttributeList = 
+build_property.TargetFramework = net10.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v10.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EntryPointFilePath = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = JPTrading.Web
+build_property.RootNamespace = JPTrading.Web
+build_property.ProjectDir = D:\frontend\JP1\JPTrading.Web\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.RazorLangVersion = 10.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\frontend\JP1\JPTrading.Web
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 10.0
+build_property.EnableCodeStyleSeverity = 
+
+[D:/frontend/JP1/JPTrading.Web/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Components/AuctionSheetViewer.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBdWN0aW9uU2hlZXRWaWV3ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Components/FilterPanel.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xGaWx0ZXJQYW5lbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Components/OfflineBanner.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xPZmZsaW5lQmFubmVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Components/OrderStatusStepper.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xPcmRlclN0YXR1c1N0ZXBwZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Components/VehicleCard.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWZWhpY2xlQ2FyZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/Admin/AdminDashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWRtaW5EYXNoYm9hcmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/Admin/ManageOrders.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlT3JkZXJzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/Admin/ManageUsers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlVXNlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/Admin/ManageVehicles.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlVmVoaWNsZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/AuctionSheet.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXVjdGlvblNoZWV0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/Buyer/BuyerDashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQnV5ZXJcQnV5ZXJEYXNoYm9hcmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/Buyer/MyOrders.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQnV5ZXJcTXlPcmRlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/Buyer/Notifications.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQnV5ZXJcTm90aWZpY2F0aW9ucy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/Buyer/OrderTracking.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQnV5ZXJcT3JkZXJUcmFja2luZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/CurrencyConverter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VycmVuY3lDb252ZXJ0ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/NotFound.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTm90Rm91bmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/Register.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/Staff/StaffDashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhZmZcU3RhZmZEYXNoYm9hcmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/Staff/UpdateOrderStatus.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhZmZcVXBkYXRlT3JkZXJTdGF0dXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/VehicleDetail.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVoaWNsZURldGFpbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/Pages/Vehicles.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVoaWNsZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/frontend/JP1/JPTrading.Web/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 

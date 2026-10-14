@@ -1,0 +1,34 @@
+@page "/buyer/orders/{Id:int}"
+@inject OrderService OrderSvc
+
+<PageTitle>Order Tracking</PageTitle>
+
+<MudButton Href="buyer/orders" StartIcon="@Icons.Material.Filled.ArrowBack" Class="mb-3">
+    Back to orders
+</MudButton>
+
+@if (_order is null)
+{
+    <MudAlert Severity="Severity.Warning">Order not found.</MudAlert>
+}
+else
+{
+    <MudPaper Class="pa-4" Elevation="2">
+        <MudText Typo="Typo.h5">Order #@_order.Id</MudText>
+        <MudText Class="mb-4">@_order.VehicleTitle</MudText>
+
+        <OrderStatusStepper Current="_order.Status" />
+    </MudPaper>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    Order? _order;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _order = await OrderSvc.GetByIdAsync(Id);
+    }
+}

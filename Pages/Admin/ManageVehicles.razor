@@ -1,0 +1,34 @@
+@page "/admin/vehicles"
+@inject VehicleService VehicleSvc
+
+<PageTitle>Manage Vehicles</PageTitle>
+
+<MudText Typo="Typo.h4" Class="mb-4">Manage Vehicles</MudText>
+
+<MudTable Items="_vehicles" Hover="true">
+    <HeaderContent>
+        <MudTh>ID</MudTh>
+        <MudTh>Vehicle</MudTh>
+        <MudTh>Mileage</MudTh>
+        <MudTh>Grade</MudTh>
+        <MudTh>Price (JPY)</MudTh>
+        <MudTh>Status</MudTh>
+    </HeaderContent>
+    <RowTemplate Context="v">
+        <MudTd>@v.Id</MudTd>
+        <MudTd>@v.Title</MudTd>
+        <MudTd>@($"{v.MileageKm:N0} km")</MudTd>
+        <MudTd>@v.AuctionGrade</MudTd>
+        <MudTd>@($"{v.PriceJpy:N0}")</MudTd>
+        <MudTd>@v.Status</MudTd>
+    </RowTemplate>
+</MudTable>
+
+@code {
+    List<Vehicle> _vehicles = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _vehicles = await VehicleSvc.GetAllAsync();
+    }
+}

@@ -1,0 +1,39 @@
+<MudCard Elevation="2" Class="h-100">
+    @if (!string.IsNullOrWhiteSpace(Vehicle.ImageUrl))
+    {
+        <MudCardMedia Image="@Vehicle.ImageUrl" Height="170" />
+    }
+    else
+    {
+        <div style="height:170px; display:flex; align-items:center; justify-content:center; background:#eeeeee;">
+            <MudIcon Icon="@Icons.Material.Filled.DirectionsCar" Size="Size.Large" />
+        </div>
+    }
+
+    <MudCardContent>
+        <MudText Typo="Typo.h6">@Vehicle.Title</MudText>
+        <MudText Typo="Typo.body2">@($"{Vehicle.MileageKm:N0} km | {Vehicle.Transmission} | {Vehicle.FuelType}")</MudText>
+        <MudText Typo="Typo.body2">Auction grade: @Vehicle.AuctionGrade</MudText>
+
+        <MudText Typo="Typo.subtitle1" Class="mt-2"><b>@($"¥ {Vehicle.PriceJpy:N0}")</b></MudText>
+        <MudText Typo="Typo.body2">@($"≈ PKR {(Vehicle.PriceJpy * Rate):N0}")</MudText>
+
+        <MudText Typo="Typo.caption" Color="@(Vehicle.Status == "Available" ? Color.Success : Color.Warning)">
+            @Vehicle.Status
+        </MudText>
+    </MudCardContent>
+
+    <MudCardActions>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="@($"vehicles/{Vehicle.Id}")">
+            View Details
+        </MudButton>
+    </MudCardActions>
+</MudCard>
+
+@code {
+    [Parameter, EditorRequired]
+    public Vehicle Vehicle { get; set; } = default!;
+
+    [Parameter]
+    public decimal Rate { get; set; } = 1m;
+}

@@ -1,0 +1,20 @@
+@page "/buyer/notifications"
+
+<PageTitle>Notifications</PageTitle>
+
+<MudText Typo="Typo.h4" Class="mb-4">Notifications</MudText>
+
+@* Dummy data. Baad me backend (WhatsApp/Email notifications) se aayega. *@
+@foreach (var n in _items)
+{
+    <MudAlert Severity="Severity.Info" Class="mb-2">@n</MudAlert>
+}
+
+@code {
+    List<string> _items = new()
+    {
+        "Order #1001 is now In Transit.",
+        "Order #1002 has been Confirmed.",
+        "Your auction sheet translation is ready."
+    };
+}

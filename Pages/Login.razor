@@ -1,0 +1,47 @@
+@page "/login"
+@inject NavigationManager Nav
+@inject ISnackbar Snackbar
+
+<PageTitle>Login</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Small">
+    <MudPaper Class="pa-6" Elevation="3">
+        <MudText Typo="Typo.h5" Class="mb-4">Login</MudText>
+
+        <EditForm Model="_model" OnValidSubmit="HandleLogin">
+            <DataAnnotationsValidator />
+
+            <MudTextField @bind-Value="_model.Email" For="@(() => _model.Email)"
+                          Label="Email" Variant="Variant.Outlined" Class="mb-3" />
+
+            <MudTextField @bind-Value="_model.Password" For="@(() => _model.Password)"
+                          Label="Password" InputType="InputType.Password"
+                          Variant="Variant.Outlined" Class="mb-3" />
+
+            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled"
+                       Color="Color.Primary" FullWidth="true">
+                Login
+            </MudButton>
+        </EditForm>
+
+        <MudText Class="mt-3">No account? <MudLink Href="register">Register</MudLink></MudText>
+        <MudText Typo="Typo.caption" Class="mt-2">
+            Temporary: email me "admin" ya "staff" likha ho to wo dashboard khulega, warna Buyer.
+        </MudText>
+    </MudPaper>
+</MudContainer>
+
+@code {
+    LoginRequest _model = new();
+
+    void HandleLogin()
+    {
+        var email = _model.Email.ToLower();
+
+        if (email.Contains("admin")) Nav.NavigateTo("admin/dashboard");
+        else if (email.Contains("staff")) Nav.NavigateTo("staff/dashboard");
+        else Nav.NavigateTo("buyer/dashboard");
+
+        Snackbar.Add("Logged in (placeholder, backend jodna baqi hai)", Severity.Success);
+    }
+}
